@@ -40,6 +40,8 @@ a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focu
 	background: -o-linear-gradient(top, rgba(220,36,36,0.65) 0%,rgba(0,0,0,0) 39%,rgba(74,86,157,0.35) 100%), url('../img/hero_wolf.jpeg') no-repeat;
 	background: -ms-linear-gradient(top, rgba(220,36,36,0.65) 0%,rgba(0,0,0,0) 39%,rgba(74,86,157,0.35) 100%), url('../img/hero_wolf.jpeg') no-repeat;
 	background: linear-gradient(to bottom, rgba(220,36,36,0.65) 0%,rgba(0,0,0,0) 39%,rgba(74,86,157,0.35) 100%), url('../img/hero_wolf.jpeg') no-repeat;
+	background-size: cover;
+	background-position: center center;
 	min-height: 600px;
 	height: 100%;
 	text-align: center;	
