@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Bewildered-Cantaloupe/Kango.png?label=ready&title=Ready)](https://waffle.io/Bewildered-Cantaloupe/Kango)
 # Kango
 
 > An open crowd-sourcing platform to fund struggling animal shelters.
