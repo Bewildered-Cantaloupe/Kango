@@ -8,6 +8,7 @@ var NotFound = require('./components/NotFound.jsx');
 var NavBarDefault = require('./components/NavBarDefault.jsx');
 var Login = require('./components/Login.jsx');
 var Signup = require('./components/Signup.jsx');
+var AddShelter = require('./components/AddShelter.jsx');
 var TwitterLogin = require('./components/TwitterLogin.jsx');
 var Shelter = require('./components/Shelter.jsx');
 
@@ -39,7 +40,7 @@ var routes = (
   <Route name="app" handler={App}>
     <Route name="main" path="/" handler={Main} />
     <Route name="fund-shelters" handler={Shelters} />
-    <Route name="signup" handler={Signup} />
+    <Route name="signup" handler={AddShelter} />
     <Route name="twitter" handler={TwitterLogin} />
     <Route name="shelter" path="/shelter/:sheltername" handler={Shelter} />
     <NotFoundRoute handler={NotFound} />

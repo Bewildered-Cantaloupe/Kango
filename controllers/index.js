@@ -53,7 +53,7 @@ exports.postShelter = function(req, res) {
     } else {
       dbHelper.createShelter(sheltername, data, function(newShelter) {
         Shelters.add(newShelter);
-        res.send(200, newShelter);
+        res.send(201, newShelter);
       });
     }
   });
