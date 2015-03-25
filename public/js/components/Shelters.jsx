@@ -9,7 +9,8 @@ var Shelters = React.createClass({
 					<NavBarDefault />
 				</div>
 				<div className="container">
-					<h1> This is the Shelters view </h1>
+					<input type="text" value="Hello!" />;
+			 		{/*<h1> This is the Shelters view </h1>*/}
 				</div>
 			</div>
 		)

@@ -39,6 +39,7 @@ var routes = (
   <Route name="app" handler={App}>
   	<Route name="main" path="/" handler={Main} />
     <Route name="fund-shelters" handler={Shelters} />
+    <Route name="signup" handler={Signup} />
     <Route name="twitter" handler={TwitterLogin} />
     <Route name="shelter" path="/shelter/:sheltername" handler={Shelter} />
     <NotFoundRoute handler={NotFound} />

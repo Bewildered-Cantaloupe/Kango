@@ -33227,6 +33227,7 @@ var routes = (
   React.createElement(Route, {name: "app", handler: App}, 
   	React.createElement(Route, {name: "main", path: "/", handler: Main}), 
     React.createElement(Route, {name: "fund-shelters", handler: Shelters}), 
+    React.createElement(Route, {name: "signup", handler: Signup}), 
     React.createElement(Route, {name: "twitter", handler: TwitterLogin}), 
     React.createElement(Route, {name: "shelter", path: "/shelter/:sheltername", handler: Shelter}), 
     React.createElement(NotFoundRoute, {handler: NotFound})
@@ -33418,7 +33419,7 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 								)
 							), 
 							React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-								React.createElement("li", null, React.createElement(Link, {to: "fund-shelters"}, "View Shelters")), 
+								React.createElement("li", null, React.createElement(Link, {to: "signup"}, "New Shelter Registration")), 
 								React.createElement("li", null, React.createElement(Link, {to: "main"}, "About")), 
 								React.createElement("li", null, 
 								React.createElement(Link, {to: "main", "data-toggle": "modal", "data-target": "#signIn"}, 
@@ -33466,7 +33467,7 @@ var _ = require('underscore');
 var $ = require('jquery');
 var ShelterStore = require('../stores/ShelterStore.jsx');
 var NavBarDefault = require('./NavBarDefault.jsx');
-var circleProgress = require('../vendor/circle-progress.js');
+// var circleProgress = require('../vendor/circle-progress.js');
 var AsyncActions = require('../actions/asyncActions.jsx');
 var SingleStore = require('../stores/SingleStore.jsx');
 
@@ -33562,7 +33563,7 @@ var Shelter = React.createClass({displayName: "Shelter",
 
 module.exports = Shelter;
 
-},{"../actions/asyncActions.jsx":212,"../stores/ShelterStore.jsx":230,"../stores/SingleStore.jsx":231,"../vendor/circle-progress.js":232,"./NavBarDefault.jsx":220,"jquery":2,"react":189,"reflux":190,"underscore":210}],224:[function(require,module,exports){
+},{"../actions/asyncActions.jsx":212,"../stores/ShelterStore.jsx":230,"../stores/SingleStore.jsx":231,"./NavBarDefault.jsx":220,"jquery":2,"react":189,"reflux":190,"underscore":210}],224:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -33618,7 +33619,8 @@ var Shelters = React.createClass({displayName: "Shelters",
 					React.createElement(NavBarDefault, null)
 				), 
 				React.createElement("div", {className: "container"}, 
-					React.createElement("h1", null, " This is the Shelters view ")
+					React.createElement("input", {type: "text", value: "Hello!"}), ";"
+			 		/*<h1> This is the Shelters view </h1>*/
 				)
 			)
 		)
@@ -33874,409 +33876,4 @@ var SingleStore = Reflux.createStore({
 module.exports = SingleStore;
 
 
-},{"../actions/asyncActions.jsx":212,"reflux":190}],232:[function(require,module,exports){
-/*
-jquery-circle-progress - jQuery Plugin to draw animated circular progress bars
-
-URL: http://kottenator.github.io/jquery-circle-progress/
-Author: Rostyslav Bryzgunov <kottenator@gmail.com>
-Version: 1.1.2
-License: MIT
-*/
-(function($) {
-    function CircleProgress(config) {
-        this.init(config);
-    }
-
-    CircleProgress.prototype = {
-        //----------------------------------------------- public options -----------------------------------------------
-        /**
-         * This is the only required option. It should be from 0.0 to 1.0
-         * @type {number}
-         */
-        value: 0.0,
-
-        /**
-         * Size of the circle / canvas in pixels
-         * @type {number}
-         */
-        size: 100.0,
-
-        /**
-         * Initial angle for 0.0 value in radians
-         * @type {number}
-         */
-        startAngle: -Math.PI,
-
-        /**
-         * Width of the arc. By default it's auto-calculated as 1/14 of size, but you may set it explicitly in pixels
-         * @type {number|string}
-         */
-        thickness: 'auto',
-
-        /**
-         * Fill of the arc. You may set it to:
-         *   - solid color:
-         *     - { color: '#3aeabb' }
-         *     - { color: 'rgba(255, 255, 255, .3)' }
-         *   - linear gradient (left to right):
-         *     - { gradient: ['#3aeabb', '#fdd250'], gradientAngle: Math.PI / 4 }
-         *     - { gradient: ['red', 'green', 'blue'], gradientDirection: [x0, y0, x1, y1] }
-         *   - image:
-         *     - { image: 'http://i.imgur.com/pT0i89v.png' }
-         *     - { image: imageObject }
-         *     - { color: 'lime', image: 'http://i.imgur.com/pT0i89v.png' } - color displayed until the image is loaded
-         */
-        fill: {
-            gradient: ['#3aeabb', '#fdd250']
-        },
-
-        /**
-         * Color of the "empty" arc. Only a color fill supported by now
-         * @type {string}
-         */
-        emptyFill: 'rgba(0, 0, 0, .1)',
-
-        /**
-         * Animation config (see jQuery animations: http://api.jquery.com/animate/)
-         */
-        animation: {
-            duration: 1200,
-            easing: 'circleProgressEasing'
-        },
-
-        /**
-         * Default animation starts at 0.0 and ends at specified `value`. Let's call this direct animation.
-         * If you want to make reversed animation then you should set `animationStartValue` to 1.0.
-         * Also you may specify any other value from 0.0 to 1.0
-         * @type {number}
-         */
-        animationStartValue: 0.0,
-
-        /**
-         * Reverse animation and arc draw
-         * @type {boolean}
-         */
-        reverse: false,
-
-        /**
-         * Arc line cap ('butt' (default), 'round' and 'square')
-         * Read more: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineCap
-         * @type {string}
-         */
-        lineCap: 'butt',
-
-        //-------------------------------------- protected properties and methods --------------------------------------
-        /**
-         * @protected
-         */
-        constructor: CircleProgress,
-
-        /**
-         * Container element. Should be passed into constructor config
-         * @protected
-         * @type {jQuery}
-         */
-        el: null,
-
-        /**
-         * Canvas element. Automatically generated and prepended to the {@link CircleProgress.el container}
-         * @protected
-         * @type {HTMLCanvasElement}
-         */
-        canvas: null,
-
-        /**
-         * 2D-context of the {@link CircleProgress.canvas canvas}
-         * @protected
-         * @type {CanvasRenderingContext2D}
-         */
-        ctx: null,
-
-        /**
-         * Radius of the outer circle. Automatically calculated as {@link CircleProgress.size} / 2
-         * @protected
-         * @type {number}
-         */
-        radius: 0.0,
-
-        /**
-         * Fill of the main arc. Automatically calculated, depending on {@link CircleProgress.fill} option
-         * @protected
-         * @type {string|CanvasGradient|CanvasPattern}
-         */
-        arcFill: null,
-
-        /**
-         * Last rendered frame value
-         * @protected
-         * @type {number}
-         */
-        lastFrameValue: 0.0,
-
-        /**
-         * Init/re-init the widget
-         * @param {object} config Config
-         */
-        init: function(config) {
-            $.extend(this, config);
-            this.radius = this.size / 2;
-            this.initWidget();
-            this.initFill();
-            this.draw();
-        },
-
-        /**
-         * @protected
-         */
-        initWidget: function() {
-            var canvas = this.canvas = this.canvas || $('<canvas>').prependTo(this.el)[0];
-            canvas.width = this.size;
-            canvas.height = this.size;
-            this.ctx = canvas.getContext('2d');
-        },
-
-        /**
-         * This method sets {@link CircleProgress.arcFill}
-         * It could do this async (on image load)
-         * @protected
-         */
-        initFill: function() {
-            var self = this,
-                fill = this.fill,
-                ctx = this.ctx,
-                size = this.size;
-
-            if (!fill)
-                throw Error("The fill is not specified!");
-
-            if (fill.color)
-                this.arcFill = fill.color;
-
-            if (fill.gradient) {
-                var gr = fill.gradient;
-
-                if (gr.length == 1) {
-                    this.arcFill = gr[0];
-                } else if (gr.length > 1) {
-                    var ga = fill.gradientAngle || 0, // gradient direction angle; 0 by default
-                        gd = fill.gradientDirection || [
-                            size / 2 * (1 - Math.cos(ga)), // x0
-                            size / 2 * (1 + Math.sin(ga)), // y0
-                            size / 2 * (1 + Math.cos(ga)), // x1
-                            size / 2 * (1 - Math.sin(ga))  // y1
-                        ];
-
-                    var lg = ctx.createLinearGradient.apply(ctx, gd);
-
-                    for (var i = 0; i < gr.length; i++) {
-                        var color = gr[i],
-                            pos = i / (gr.length - 1);
-
-                        if ($.isArray(color)) {
-                            pos = color[1];
-                            color = color[0];
-                        }
-
-                        lg.addColorStop(pos, color);
-                    }
-
-                    this.arcFill = lg;
-                }
-            }
-
-            if (fill.image) {
-                var img;
-
-                if (fill.image instanceof Image) {
-                    img = fill.image;
-                } else {
-                    img = new Image();
-                    img.src = fill.image;
-                }
-
-                if (img.complete)
-                    setImageFill();
-                else
-                    img.onload = setImageFill;
-            }
-
-            function setImageFill() {
-                var bg = $('<canvas>')[0];
-                bg.width = self.size;
-                bg.height = self.size;
-                bg.getContext('2d').drawImage(img, 0, 0, size, size);
-                self.arcFill = self.ctx.createPattern(bg, 'no-repeat');
-                self.drawFrame(self.lastFrameValue);
-            }
-        },
-
-        draw: function() {
-            if (this.animation)
-                this.drawAnimated(this.value);
-            else
-                this.drawFrame(this.value);
-        },
-
-        /**
-         * @protected
-         * @param {number} v Frame value
-         */
-        drawFrame: function(v) {
-            this.lastFrameValue = v;
-            this.ctx.clearRect(0, 0, this.size, this.size);
-            this.drawEmptyArc(v);
-            this.drawArc(v);
-        },
-
-        /**
-         * @protected
-         * @param {number} v Frame value
-         */
-        drawArc: function(v) {
-            var ctx = this.ctx,
-                r = this.radius,
-                t = this.getThickness(),
-                a = this.startAngle;
-
-            ctx.save();
-            ctx.beginPath();
-
-            if (!this.reverse) {
-                ctx.arc(r, r, r - t / 2, a, a + Math.PI * 2 * v);
-            } else {
-                ctx.arc(r, r, r - t / 2, a - Math.PI * 2 * v, a);
-            }
-
-            ctx.lineWidth = t;
-            ctx.lineCap = this.lineCap;
-            ctx.strokeStyle = this.arcFill;
-            ctx.stroke();
-            ctx.restore();
-        },
-
-        /**
-         * @protected
-         * @param {number} v Frame value
-         */
-        drawEmptyArc: function(v) {
-            var ctx = this.ctx,
-                r = this.radius,
-                t = this.getThickness(),
-                a = this.startAngle;
-
-            if (v < 1) {
-                ctx.save();
-                ctx.beginPath();
-
-                if (v <= 0) {
-                    ctx.arc(r, r, r - t / 2, 0, Math.PI * 2);
-                } else {
-                    if (!this.reverse) {
-                        ctx.arc(r, r, r - t / 2, a + Math.PI * 2 * v, a);
-                    } else {
-                        ctx.arc(r, r, r - t / 2, a, a - Math.PI * 2 * v);
-                    }
-                }
-
-                ctx.lineWidth = t;
-                ctx.strokeStyle = this.emptyFill;
-                ctx.stroke();
-                ctx.restore();
-            }
-        },
-
-        /**
-         * @protected
-         * @param {number} v Value
-         */
-        drawAnimated: function(v) {
-            var self = this,
-                el = this.el;
-
-            el.trigger('circle-animation-start');
-
-            $(this.canvas)
-                .stop(true, true)
-                .css({ animationProgress: 0 })
-                .animate({ animationProgress: 1 }, $.extend({}, this.animation, {
-                    step: function(animationProgress) {
-                        var stepValue = self.animationStartValue * (1 - animationProgress) + v * animationProgress;
-                        self.drawFrame(stepValue);
-                        el.trigger('circle-animation-progress', [animationProgress, stepValue]);
-                    },
-                    complete: function() {
-                        el.trigger('circle-animation-end');
-                    }
-                }));
-        },
-
-        /**
-         * @protected
-         * @returns {number}
-         */
-        getThickness: function() {
-            return $.isNumeric(this.thickness) ? this.thickness : this.size / 14;
-        }
-    };
-
-    //-------------------------------------------- Initiating jQuery plugin --------------------------------------------
-    $.circleProgress = {
-        // Default options (you may override them)
-        defaults: CircleProgress.prototype
-    };
-
-    // ease-in-out-cubic
-    $.easing.circleProgressEasing = function(x, t, b, c, d) {
-        if ((t /= d / 2) < 1)
-            return c / 2 * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t + 2) + b;
-    };
-
-    /**
-     * Draw animated circular progress bar.
-     *
-     * Appends <canvas> to the element or updates already appended one.
-     *
-     * If animated, throws 3 events:
-     *
-     *   - circle-animation-start(jqEvent)
-     *   - circle-animation-progress(jqEvent, animationProgress, stepValue) - multiple event;
-     *                                                                        animationProgress: from 0.0 to 1.0;
-     *                                                                        stepValue: from 0.0 to value
-     *   - circle-animation-end(jqEvent)
-     *
-     * @param config Example: { value: 0.75, size: 50, animation: false };
-     *                you may set any of public options;
-     *                `animation` may be set to false;
-     *                you may also use .circleProgress('widget') to get the canvas
-     */
-    $.fn.circleProgress = function(config) {
-        var dataName = 'circle-progress';
-
-        if (config == 'widget') {
-            var data = this.data(dataName);
-            return data && data.canvas;
-        }
-
-        return this.each(function() {
-            var el = $(this),
-                instance = el.data(dataName),
-                cfg = $.isPlainObject(config) ? config : {};
-
-            if (instance) {
-                instance.init(cfg);
-            } else {
-                cfg.el = el;
-                instance = new CircleProgress(cfg);
-                el.data(dataName, instance);
-            }
-        });
-    };
-})(jQuery);
-
-
-},{}],233:[function(require,module,exports){
-function countUp(a,b,c,d,e,f){for(var g=0,h=["webkit","moz","ms","o"],i=0;i<h.length&&!window.requestAnimationFrame;++i)window.requestAnimationFrame=window[h[i]+"RequestAnimationFrame"],window.cancelAnimationFrame=window[h[i]+"CancelAnimationFrame"]||window[h[i]+"CancelRequestAnimationFrame"];window.requestAnimationFrame||(window.requestAnimationFrame=function(a){var c=(new Date).getTime(),d=Math.max(0,16-(c-g)),e=window.setTimeout(function(){a(c+d)},d);return g=c+d,e}),window.cancelAnimationFrame||(window.cancelAnimationFrame=function(a){clearTimeout(a)}),this.options=f||{useEasing:!0,useGrouping:!0,separator:",",decimal:"."},""==this.options.separator&&(this.options.useGrouping=!1),null==this.options.prefix&&(this.options.prefix=""),null==this.options.suffix&&(this.options.suffix="");var j=this;this.d="string"==typeof a?document.getElementById(a):a,this.startVal=Number(b),this.endVal=Number(c),this.countDown=this.startVal>this.endVal?!0:!1,this.startTime=null,this.timestamp=null,this.remaining=null,this.frameVal=this.startVal,this.rAF=null,this.decimals=Math.max(0,d||0),this.dec=Math.pow(10,this.decimals),this.duration=1e3*e||2e3,this.version=function(){return"1.3.2"},this.printValue=function(a){var b=isNaN(a)?"--":j.formatNumber(a);"INPUT"==j.d.tagName?this.d.value=b:"text"==j.d.tagName?this.d.textContent=b:this.d.innerHTML=b},this.easeOutExpo=function(a,b,c,d){return 1024*c*(-Math.pow(2,-10*a/d)+1)/1023+b},this.count=function(a){null===j.startTime&&(j.startTime=a),j.timestamp=a;var b=a-j.startTime;if(j.remaining=j.duration-b,j.options.useEasing)if(j.countDown){var c=j.easeOutExpo(b,0,j.startVal-j.endVal,j.duration);j.frameVal=j.startVal-c}else j.frameVal=j.easeOutExpo(b,j.startVal,j.endVal-j.startVal,j.duration);else if(j.countDown){var c=(j.startVal-j.endVal)*(b/j.duration);j.frameVal=j.startVal-c}else j.frameVal=j.startVal+(j.endVal-j.startVal)*(b/j.duration);j.frameVal=j.countDown?j.frameVal<j.endVal?j.endVal:j.frameVal:j.frameVal>j.endVal?j.endVal:j.frameVal,j.frameVal=Math.round(j.frameVal*j.dec)/j.dec,j.printValue(j.frameVal),b<j.duration?j.rAF=requestAnimationFrame(j.count):null!=j.callback&&j.callback()},this.start=function(a){return j.callback=a,isNaN(j.endVal)||isNaN(j.startVal)?(console.log("countUp error: startVal or endVal is not a number"),j.printValue()):j.rAF=requestAnimationFrame(j.count),!1},this.stop=function(){cancelAnimationFrame(j.rAF)},this.reset=function(){j.startTime=null,j.startVal=b,cancelAnimationFrame(j.rAF),j.printValue(j.startVal)},this.resume=function(){j.stop(),j.startTime=null,j.duration=j.remaining,j.startVal=j.frameVal,requestAnimationFrame(j.count)},this.formatNumber=function(a){a=a.toFixed(j.decimals),a+="";var b,c,d,e;if(b=a.split("."),c=b[0],d=b.length>1?j.options.decimal+b[1]:"",e=/(\d+)(\d{3})/,j.options.useGrouping)for(;e.test(c);)c=c.replace(e,"$1"+j.options.separator+"$2");return j.options.prefix+c+d+j.options.suffix},j.printValue(j.startVal)}
-
-},{}]},{},[211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233]);
+},{"../actions/asyncActions.jsx":212,"reflux":190}]},{},[211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231]);
