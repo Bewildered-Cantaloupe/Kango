@@ -20,10 +20,18 @@ var Login = React.createClass({
               <input type="password" className="form-control login-input" id="inputPassword3" placeholder="Password" />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-default">Sign in</button>
+              <button type="submit" className="btn">Sign in</button>
             </div>
           </form>
+          <p>or login with:</p>
+          <form action="/auth/twitter" method="get">
+            <button type="submit" className="tfg-login fa fa-twitter-square fa-3x"></button>
+            <button type="submit" className="tfg-login fa fa-facebook-square fa-3x"></button>
+            <button type="submit" className="tfg-login fa fa-google-plus-square fa-3x"></button>
+          </form>
           <p>Need an account? <Link to="signup">Sign Up</Link></p>
+        </div>
+        <div className="modal-footer">
         </div>
       </div>
     )
