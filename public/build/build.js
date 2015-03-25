@@ -33196,6 +33196,7 @@ var NotFound = require('./components/NotFound.jsx');
 var NavBarDefault = require('./components/NavBarDefault.jsx');
 var Login = require('./components/Login.jsx');
 var Signup = require('./components/Signup.jsx');
+var AddShelter = require('./components/AddShelter.jsx');
 var TwitterLogin = require('./components/TwitterLogin.jsx');
 var Shelter = require('./components/Shelter.jsx');
 
@@ -33207,26 +33208,27 @@ var RouteHandler = Router.RouteHandler;
 var NotFoundRoute = Router.NotFoundRoute;
 
 var App = React.createClass({displayName: "App",
-	getInitialState: function() {
-		return {
-			nearbyShelters: ShelterStore.getShelters()
-		}
-	},
-	render: function() {
-		return (
-			React.createElement("div", null, 
-				React.createElement("div", {className: "main-wrapper"}, 
-					React.createElement(RouteHandler, {shelters: this.state.nearbyShelters})
-				)
-			)
-		)	
-	}
+  getInitialState: function() {
+    return {
+      nearbyShelters: ShelterStore.getShelters()
+    }
+  },
+  render: function() {
+    return (
+      React.createElement("div", null, 
+        React.createElement("div", {className: "main-wrapper"}, 
+          React.createElement(RouteHandler, {shelters: this.state.nearbyShelters})
+        )
+      )
+    ) 
+  }
 });
 
 var routes = (
   React.createElement(Route, {name: "app", handler: App}, 
-  	React.createElement(Route, {name: "main", path: "/", handler: Main}), 
+    React.createElement(Route, {name: "main", path: "/", handler: Main}), 
     React.createElement(Route, {name: "fund-shelters", handler: Shelters}), 
+    React.createElement(Route, {name: "signup", handler: AddShelter}), 
     React.createElement(Route, {name: "twitter", handler: TwitterLogin}), 
     React.createElement(Route, {name: "shelter", path: "/shelter/:sheltername", handler: Shelter}), 
     React.createElement(NotFoundRoute, {handler: NotFound})
@@ -33239,7 +33241,7 @@ Router.run(routes,function (Handler) {
 
 
 
-},{"./components/Login.jsx":218,"./components/Main.jsx":219,"./components/NavBarDefault.jsx":220,"./components/NotFound.jsx":221,"./components/Shelter.jsx":223,"./components/Shelters.jsx":225,"./components/ShowList.jsx":227,"./components/Signup.jsx":228,"./components/TwitterLogin.jsx":229,"./stores/ShelterStore.jsx":230,"react":189,"react-router":30}],212:[function(require,module,exports){
+},{"./components/AddShelter.jsx":214,"./components/Login.jsx":218,"./components/Main.jsx":219,"./components/NavBarDefault.jsx":220,"./components/NotFound.jsx":221,"./components/Shelter.jsx":223,"./components/Shelters.jsx":225,"./components/ShowList.jsx":227,"./components/Signup.jsx":228,"./components/TwitterLogin.jsx":229,"./stores/ShelterStore.jsx":230,"react":189,"react-router":30}],212:[function(require,module,exports){
 var Reflux = require('reflux');
 var $ = require('jquery');
 
@@ -33273,30 +33275,73 @@ module.exports = ShelterActions;
 var React = require('react');
 
 var AddShelter = React.createClass({displayName: "AddShelter",
-	getInitialState: function() {
-		return {
-			newShelter: ''
-		}
-	},
-	updateNewShelter: function(e) {
-		this.setState({
-			newShelter: e.target.value
-		});
-	},
-	handleAddNew: function(e) {
-		this.props.addNew(this.state.newShelter);
-		this.setState({
-			newShelter: ''
-		});
-	},
-	render: function() {
-		return (
-			React.createElement("div", null, 
-				React.createElement("input", {type: "text", value: "this.state.newShelter", onChange: this.updateNewFriend}), 
-				React.createElement("button", {onClick: this.handleAddNew}, " Add New Shelter ")
-			)
-		);
-	}
+  getInitialState: function() {
+    return {
+      newShelter: ''
+    }
+  },
+  updateNewShelter: function(e) {
+    this.setState({
+      newShelter: e.target.value
+    });
+  },
+  handleAddNew: function(e) {
+    this.props.addNew(this.state.newShelter);
+    this.setState({
+      newShelter: ''
+    });
+  },
+  render: function() {
+     return (
+      React.createElement("div", {className: "modal-popup modal-content"}, 
+        React.createElement("h2", {className: "modal-popup-header"}, "Register your shelter to be featured on our site"), 
+        React.createElement("form", {action: "/shelter", method: "post"}, 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "What is your shelter's name?  "), 
+            React.createElement("input", {type: "text", class: "form-control", name: "sheltername"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "Please provide the url of an image you'd like associated with your profile. "), 
+            React.createElement("input", {type: "text", class: "form-control", name: "imageurl_url"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "What is your address? (Line one) "), 
+            React.createElement("input", {type: "text", class: "form-control", name: "address_1"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "What is your address? (Line two) "), 
+            React.createElement("input", {type: "text", class: "form-control", name: "address_2"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "State?"), 
+            React.createElement("input", {type: "text", class: "form-control", name: "state"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "Zip code?"), 
+            React.createElement("input", {type: "int", class: "form-control", name: "zip"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "Telephone"), 
+            React.createElement("input", {type: "int", class: "form-control", name: "phone"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "Best contact email?"), 
+            React.createElement("input", {type: "text", class: "form-control", name: "email"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, "Please provide a brief description of the services you provide and the nature of your campaign."), 
+            React.createElement("input", {type: "text", class: "form-control", name: "bio"})
+          ), 
+          React.createElement("div", {class: "form-group"}, 
+            React.createElement("label", null, " How much are you trying to raise? "), 
+            React.createElement("input", {type: "int", class: "form-control", name: "goal"})
+          ), 
+
+          React.createElement("button", {type: "submit", class: "btn btn-warning btn-lg"}, "Signup")
+        )
+      )
+    );
+  }
 });
 
 module.exports = AddShelter;
@@ -33418,7 +33463,7 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 								)
 							), 
 							React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-								React.createElement("li", null, React.createElement(Link, {to: "fund-shelters"}, "View Shelters")), 
+								React.createElement("li", null, React.createElement(Link, {to: "signup"}, "New Shelter Registration")), 
 								React.createElement("li", null, React.createElement(Link, {to: "main"}, "About")), 
 								React.createElement("li", null, 
 								React.createElement(Link, {to: "main", "data-toggle": "modal", "data-target": "#signIn"}, 
@@ -33675,27 +33720,14 @@ var Signup = React.createClass({displayName: "Signup",
   render: function() {
     return (
       React.createElement("div", {className: "modal-popup modal-content"}, 
-        React.createElement("h2", {className: "modal-popup-header"}, "Sign Up for Kango"), 
-        React.createElement("form", {action: "/signup", method: "post"}, 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Email"), 
-            React.createElement("input", {type: "text", class: "form-control", name: "email"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Password"), 
-            React.createElement("input", {type: "password", class: "form-control", name: "password"})
-          ), 
-
-          React.createElement("button", {type: "submit", class: "btn btn-warning btn-lg"}, "Signup")
-        ), 
-
-        "// ", React.createElement("p", null, "Need an account? ", React.createElement("a", {href: "/signup"}, "Signup"))
+        React.createElement("h2", {className: "modal-popup-header"}, "This page no longer being used anywhere.")
       )
     )
   }
 });
 
 module.exports = Signup;
+
 
 },{"react":189}],229:[function(require,module,exports){
 var React = require('react');
