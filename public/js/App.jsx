@@ -19,26 +19,27 @@ var RouteHandler = Router.RouteHandler;
 var NotFoundRoute = Router.NotFoundRoute;
 
 var App = React.createClass({
-	getInitialState: function() {
-		return {
-			nearbyShelters: ShelterStore.getShelters()
-		}
-	},
-	render: function() {
-		return (
-			<div>
-				<div className="main-wrapper">
-					<RouteHandler shelters={this.state.nearbyShelters}/>
-				</div>
-			</div>
-		)	
-	}
+  getInitialState: function() {
+    return {
+      nearbyShelters: ShelterStore.getShelters()
+    }
+  },
+  render: function() {
+    return (
+      <div>
+        <div className="main-wrapper">
+          <RouteHandler shelters={this.state.nearbyShelters}/>
+        </div>
+      </div>
+    ) 
+  }
 });
 
 var routes = (
   <Route name="app" handler={App}>
-  	<Route name="main" path="/" handler={Main} />
+    <Route name="main" path="/" handler={Main} />
     <Route name="fund-shelters" handler={Shelters} />
+    <Route name="signup" handler={Signup} />
     <Route name="twitter" handler={TwitterLogin} />
     <Route name="shelter" path="/shelter/:sheltername" handler={Shelter} />
     <NotFoundRoute handler={NotFound} />

@@ -25,7 +25,7 @@ var NavBarDefault = React.createClass({
 								</Link>
 							</div>
 							<ul className="nav navbar-nav navbar-right">
-								<li><Link to="fund-shelters">View Shelters</Link></li>
+								<li><Link to="signup">New Shelter Registration</Link></li>
 								<li><Link to="main">About</Link></li>
 								<li>
 								<Link to="main" data-toggle="modal" data-target="#signIn">
