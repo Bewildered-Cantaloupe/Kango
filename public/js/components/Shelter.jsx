@@ -7,7 +7,7 @@ var NavBarDefault = require('./NavBarDefault.jsx');
 // var circleProgress = require('../vendor/circle-progress.js');
 var AsyncActions = require('../actions/asyncActions.jsx');
 var SingleStore = require('../stores/SingleStore.jsx');
-
+var Progress = require('react-progressbar');
 
 var Shelter = React.createClass({
   mixins: [Reflux.ListenerMixin],
@@ -32,7 +32,7 @@ var Shelter = React.createClass({
     return shelter;
   },
   submit: function() {
-    AsyncActions.donation.triggerAsync(this.current); 
+    AsyncActions.donation.triggerAsync(this.current);
   },
 	render: function() {
 		/* Gets the shelterName and filters the contents */
@@ -42,7 +42,7 @@ var Shelter = React.createClass({
     var paragraph = shelter.bio.split('\n');
     console.log(paragraph);
     var fullParagraph = [];
-    
+
     for (var i = 0; i < paragraph.length; i++) {
     	fullParagraph.push(paragraph[i]);
     }
@@ -60,7 +60,7 @@ var Shelter = React.createClass({
 					<div className="row">
 						<div className="col-md-12">
 							<h1 className="shelter--name">{shelter.name} – {shelter.city}, <span className="caps">{shelter.state}</span></h1>
-						</div>	
+						</div>
 					</div>
 					<div className="row">
 						<div className="col-md-8">
@@ -72,6 +72,9 @@ var Shelter = React.createClass({
 								<div className="shelter--raised">${shelter.raised} raised</div>
 								<div className="shelter--goal">${shelter.goal} to go</div>
 							</div>
+              <div>
+                <Progress completed={shelter.raised/shelter.goal * 100} />
+              </div>
 							<form id="donation-form" action="/donate" method="post" onSuccess={this.updateState} onSubmit={this.submit}>
 							  <input id="donation" type="text" name="donation" />
 							  <input type="text" name="sheltername" className="hidden" readOnly="true" value={this.current.sheltername} />
@@ -87,8 +90,8 @@ var Shelter = React.createClass({
 								{fullParagraph}
 							</div>
 						</div>
-						<div className="col-md-4">	
-							<div className="shelter--leaderboard"></div>	
+						<div className="col-md-4">
+							<div className="shelter--leaderboard"></div>
 						</div>
 					</div>
 
