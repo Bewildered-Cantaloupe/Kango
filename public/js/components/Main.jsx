@@ -33,7 +33,7 @@ var Main = React.createClass({
 					</div>
 				</section>
 				<section className="three-shelters">
-					<div className="container">
+					<div className="container sub-container">
 						<ShowList {...this.props} />
 					</div>
 				</section>
