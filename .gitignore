@@ -7,6 +7,7 @@ dest
 .sass-cache/
 public/css/styles.css.map
 public/js/components/.DS_Store
+public/css
 
 # Authentication
 settings.json
