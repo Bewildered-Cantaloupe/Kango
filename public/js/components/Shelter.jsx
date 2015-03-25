@@ -4,7 +4,7 @@ var _ = require('underscore');
 var $ = require('jquery');
 var ShelterStore = require('../stores/ShelterStore.jsx');
 var NavBarDefault = require('./NavBarDefault.jsx');
-var circleProgress = require('../vendor/circle-progress.js');
+// var circleProgress = require('../vendor/circle-progress.js');
 var AsyncActions = require('../actions/asyncActions.jsx');
 var SingleStore = require('../stores/SingleStore.jsx');
 

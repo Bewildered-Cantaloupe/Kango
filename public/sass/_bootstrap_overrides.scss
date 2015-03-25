@@ -46,9 +46,16 @@ a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focu
 	height: 100%;
 	text-align: center;	
 }
-
+.col-md-4 {
+	float: left;
+	width: 332px;
+}
 /* Media Queries */
-
+@media (min-width: 334px) {
+	.container {
+		width: 332px;
+	}
+}
 @media (min-width: 768px) {
 	.modal-dialog {
 		width: 500px;
@@ -58,7 +65,7 @@ a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focu
 
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 664px;
   }
 }
 @media (min-width: 1200px) {
@@ -66,6 +73,5 @@ a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focu
     width: 1000px;
   }
 }
-
 
 
