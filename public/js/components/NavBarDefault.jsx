@@ -7,6 +7,7 @@ var RouteHandler = Router.RouteHandler;
 var NotFoundRoute = Router.NotFoundRoute;
 
 var TwitterLogin = require('./TwitterLogin.jsx');
+var Login = require('./Login.jsx');
 
 
 var NavBarDefault = React.createClass({
@@ -37,8 +38,8 @@ var NavBarDefault = React.createClass({
 					</nav>
 				</header>
 				<div className="modal fade" id="signIn" tabindex="-1" 	role="dialog">
-				  <div className="modal-dialog">
-				  	<TwitterLogin/>
+				  <div className="modal-dialog modal-lg">
+				  	<Login />
 				  </div>
 				</div>
 			</div>

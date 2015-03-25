@@ -33207,26 +33207,27 @@ var RouteHandler = Router.RouteHandler;
 var NotFoundRoute = Router.NotFoundRoute;
 
 var App = React.createClass({displayName: "App",
-	getInitialState: function() {
-		return {
-			nearbyShelters: ShelterStore.getShelters()
-		}
-	},
-	render: function() {
-		return (
-			React.createElement("div", null, 
-				React.createElement("div", {className: "main-wrapper"}, 
-					React.createElement(RouteHandler, {shelters: this.state.nearbyShelters})
-				)
-			)
-		)	
-	}
+  getInitialState: function() {
+    return {
+      nearbyShelters: ShelterStore.getShelters()
+    }
+  },
+  render: function() {
+    return (
+      React.createElement("div", null, 
+        React.createElement("div", {className: "main-wrapper"}, 
+          React.createElement(RouteHandler, {shelters: this.state.nearbyShelters})
+        )
+      )
+    ) 
+  }
 });
 
 var routes = (
   React.createElement(Route, {name: "app", handler: App}, 
-  	React.createElement(Route, {name: "main", path: "/", handler: Main}), 
+    React.createElement(Route, {name: "main", path: "/", handler: Main}), 
     React.createElement(Route, {name: "fund-shelters", handler: Shelters}), 
+    React.createElement(Route, {name: "signup", handler: Signup}), 
     React.createElement(Route, {name: "twitter", handler: TwitterLogin}), 
     React.createElement(Route, {name: "shelter", path: "/shelter/:sheltername", handler: Shelter}), 
     React.createElement(NotFoundRoute, {handler: NotFound})
@@ -33320,22 +33321,25 @@ var Link = Router.Link;
 var Login = React.createClass({displayName: "Login",
   render: function() {
     return (
-      React.createElement("div", {className: "modal-popup modal-content"}, 
-        React.createElement("h2", {className: "modal-popup-header"}, "Sign In to Kango"), 
-        React.createElement("form", {action: "/login", method: "post"}, 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Email"), 
-            React.createElement("input", {type: "text", class: "form-control", name: "email"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Password"), 
-            React.createElement("input", {type: "password", class: "form-control", name: "password"})
-          ), 
-
-          React.createElement("button", {type: "submit", class: "btn btn-warning btn-lg"}, "Login")
+      React.createElement("div", {className: "modal-content"}, 
+        React.createElement("div", {className: "modal-header"}, 
+          React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close"}, React.createElement("span", {"aria-hidden": "true"}, "×")), 
+          React.createElement("h3", {className: "modal-title"}, "Sign In to Kango")
         ), 
-
-        React.createElement("p", null, "Need an account? ", React.createElement(Link, {to: "signup"}, "Sign Up"))
+        React.createElement("div", {className: "modal-body"}, 
+          React.createElement("form", {className: "form-horizontal", action: "/login", method: "post"}, 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("input", {type: "email", className: "form-control login-input", id: "inputEmail3", placeholder: "Email"})
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("input", {type: "password", className: "form-control login-input", id: "inputPassword3", placeholder: "Password"})
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("button", {type: "submit", className: "btn btn-default"}, "Sign in")
+            )
+          ), 
+          React.createElement("p", null, "Need an account? ", React.createElement(Link, {to: "signup"}, "Sign Up"))
+        )
       )
     )
   }
@@ -33400,6 +33404,7 @@ var RouteHandler = Router.RouteHandler;
 var NotFoundRoute = Router.NotFoundRoute;
 
 var TwitterLogin = require('./TwitterLogin.jsx');
+var Login = require('./Login.jsx');
 
 
 var NavBarDefault = React.createClass({displayName: "NavBarDefault",
@@ -33418,7 +33423,7 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 								)
 							), 
 							React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-								React.createElement("li", null, React.createElement(Link, {to: "fund-shelters"}, "View Shelters")), 
+								React.createElement("li", null, React.createElement(Link, {to: "signup"}, "New Shelter Registration")), 
 								React.createElement("li", null, React.createElement(Link, {to: "main"}, "About")), 
 								React.createElement("li", null, 
 								React.createElement(Link, {to: "main", "data-toggle": "modal", "data-target": "#signIn"}, 
@@ -33430,8 +33435,8 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 					)
 				), 
 				React.createElement("div", {className: "modal fade", id: "signIn", tabindex: "-1", 	role: "dialog"}, 
-				  React.createElement("div", {className: "modal-dialog"}, 
-				  	React.createElement(TwitterLogin, null)
+				  React.createElement("div", {className: "modal-dialog modal-lg"}, 
+				  	React.createElement(Login, null)
 				  )
 				)
 			)
@@ -33441,7 +33446,7 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 
 module.exports = NavBarDefault;
 
-},{"./TwitterLogin.jsx":229,"react":189,"react-router":30}],221:[function(require,module,exports){
+},{"./Login.jsx":218,"./TwitterLogin.jsx":229,"react":189,"react-router":30}],221:[function(require,module,exports){
 var React = require('react');
 
 var NotFound = React.createClass({displayName: "NotFound",
