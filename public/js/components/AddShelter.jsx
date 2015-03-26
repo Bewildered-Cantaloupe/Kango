@@ -24,19 +24,23 @@ var AddShelter = React.createClass({
         <form action="/shelter" method="post">
           <div class="form-group">
             <label>What is your shelter's name?  </label>
-            <input type="text" class="form-control" name="sheltername" />
+            <input type="text" class="form-control" name="name" />
           </div>
           <div class="form-group">
             <label>Please provide the url of an image you'd like associated with your profile. </label>
-            <input type="text" class="form-control" name="imageurl_url" />
+            <input type="text" class="form-control" name="imageUrl" />
           </div>
           <div class="form-group">
             <label>What is your address? (Line one) </label>
-            <input type="text" class="form-control" name="address_1" />
+            <input type="text" class="form-control" name="address1" />
           </div>
           <div class="form-group">
             <label>What is your address? (Line two) </label>
-            <input type="text" class="form-control" name="address_2" />
+            <input type="text" class="form-control" name="address2" />
+          </div>
+          <div class="form-group">
+            <label>City?</label>
+            <input type="text" class="form-control" name="city" />
           </div>
           <div class="form-group">
             <label>State?</label>
@@ -48,7 +52,7 @@ var AddShelter = React.createClass({
           </div>
           <div class="form-group">
             <label>Telephone</label>
-            <input type="int" class="form-control" name="phone" />
+            <input type="int" class="form-control" name="telephone" />
           </div>
           <div class="form-group">
             <label>Best contact email?</label>
