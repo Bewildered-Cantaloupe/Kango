@@ -1,6 +1,4 @@
 var React = require('react');
-var ShelterStore = require('../stores/ShelterStore.jsx');
-var ShowList = require('./ShowList.jsx');
 var NavBarDefault = require('./NavBarDefault.jsx');
 
 var Router = require('react-router');
@@ -30,11 +28,6 @@ var Main = React.createClass({
 				<section className="devoted">
 					<div className="container">
 						<h2>100% of your donation fund Bay Area animal shelters.</h2>
-					</div>
-				</section>
-				<section className="three-shelters">
-					<div className="container sub-container">
-						<ShowList {...this.props} />
 					</div>
 				</section>
 			</div>
