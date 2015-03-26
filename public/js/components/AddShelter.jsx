@@ -19,56 +19,78 @@ var AddShelter = React.createClass({
   },
   render: function() {
      return (
-      <div className="modal-popup modal-content">
-        <h2 className="modal-popup-header">Register your shelter to be featured on our site</h2>
-        <form action="/shelter" method="post">
-          <div class="form-group">
-            <label>What is your shelter's name?  </label>
-            <input type="text" class="form-control" name="name" />
-          </div>
-          <div class="form-group">
-            <label>Please provide the url of an image you'd like associated with your profile. </label>
-            <input type="text" class="form-control" name="imageUrl" />
-          </div>
-          <div class="form-group">
-            <label>What is your address? (Line one) </label>
-            <input type="text" class="form-control" name="address1" />
-          </div>
-          <div class="form-group">
-            <label>What is your address? (Line two) </label>
-            <input type="text" class="form-control" name="address2" />
-          </div>
-          <div class="form-group">
-            <label>City?</label>
-            <input type="text" class="form-control" name="city" />
-          </div>
-          <div class="form-group">
-            <label>State?</label>
-            <input type="text" class="form-control" name="state" />
-          </div>
-          <div class="form-group">
-            <label>Zip code?</label>
-            <input type="int" class="form-control" name="zip" />
-          </div>
-          <div class="form-group">
-            <label>Telephone</label>
-            <input type="int" class="form-control" name="telephone" />
-          </div>
-          <div class="form-group">
-            <label>Best contact email?</label>
-            <input type="text" class="form-control" name="email" />
-          </div>          
-          <div class="form-group">
-            <label>Please provide a brief description of the services you provide and the nature of your campaign.</label>
-            <input type="text" class="form-control" name="bio" />
-          </div>
-          <div class="form-group">
-            <label> How much are you trying to raise? </label>
-            <input type="int" class="form-control" name="goal" />
-          </div>
+      <div className="modal-content">
+        <div className="modal-header">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 className="modal-title">Shelter Registration</h3>
+        </div>
+        <div className="modal-body">
+          <form className="form-horizontal" action="/shelter" method="post">
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Shelter's name?</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" name="name" placeholder="Shelter name"/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Shelter's image URL </label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" name="imageUrl" placeholder="http://" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">address</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" name="address1" placeholder="Line 1"/>
+                <input type="text" className="form-control" name="address2" placeholder="Line 2" />
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">City</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" name="city" placeholder="City"/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">State</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" name="state" placeholder="State"/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Zip code</label>
+              <div className="col-sm-10">
+                <input type="int" className="form-control" name="zip" placeholder="Zip Code"/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Telephone</label>
+              <div className="col-sm-10">
+                <input type="int" className="form-control" name="telephone" placeholder="Telephone"/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Email</label>
+              <div className="col-sm-10">
+                <input type="text" className="form-control" name="email" placeholder="Email"/>
+              </div>
+            </div>          
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Fundraising goal </label>
+              <div className="col-sm-10">
+                <input type="int" className="form-control" name="goal" placeholder="Goal"/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 control-label">Brief description of the services</label>
+              <div className="col-sm-10">
+                <textarea className="form-control" rows="5">Your description here</textarea>
+              </div>
+            </div>
 
-          <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-        </form>
+            <button type="submit" className="btn btn-warning btn-lg">Signup</button>
+          </form>
+        </div>
       </div>
     );
   }

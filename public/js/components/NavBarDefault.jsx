@@ -8,6 +8,7 @@ var NotFoundRoute = Router.NotFoundRoute;
 
 var TwitterLogin = require('./TwitterLogin.jsx');
 var Login = require('./Login.jsx');
+var SignUp = require('./AddShelter.jsx')
 
 
 var NavBarDefault = React.createClass({
@@ -30,7 +31,7 @@ var NavBarDefault = React.createClass({
 								<li><Link to="main">About</Link></li>
 								<li>
 								<Link to="main" data-toggle="modal" data-target="#signIn">
-										Sign In
+										Shelter Sign In
 								</Link>
 								</li>
 							</ul>
@@ -40,6 +41,11 @@ var NavBarDefault = React.createClass({
 				<div className="modal fade" id="signIn" tabindex="-1" 	role="dialog">
 				  <div className="modal-dialog modal-lg">
 				  	<Login />
+				  </div>
+				</div>
+				<div className="modal fade" id="signUp" tabindex="-1" 	role="dialog">
+				  <div className="modal-dialog modal-lg">
+				  	<SignUp />
 				  </div>
 				</div>
 			</div>
