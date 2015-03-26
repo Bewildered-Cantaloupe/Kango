@@ -45,9 +45,7 @@ exports.getShelters = function(req, res) {
 
 exports.postShelter = function(req, res) {
   var data = req.body;
-  console.log('This is data', data);
-  // var sheltername = data.name.replace(/^[a-z0-9]+$/i\s, '');
-  var sheltername = data.name;
+  var sheltername = data.name.replace(/[^\ws]/gi, '');
   // var sheltername = req.parsed.query;
 
   new Shelter({ sheltername: sheltername }).fetch().then(function(found) {
