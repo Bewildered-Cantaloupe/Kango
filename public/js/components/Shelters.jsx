@@ -1,5 +1,7 @@
 var React = require('react');
 var NavBarDefault = require('./NavBarDefault.jsx');
+var ShelterStore = require('../stores/ShelterStore.jsx');
+var ShowList = require('./ShowList.jsx');
 
 var Shelters = React.createClass({
 	render: function() {
@@ -9,7 +11,12 @@ var Shelters = React.createClass({
 					<NavBarDefault />
 				</div>
 				<div className="container">
-					<h1> This is the Shelters view </h1>
+					<h1> Local Shelters </h1>
+					<section className="three-shelters">
+						<div className="container sub-container">
+							<ShowList {...this.props} />
+						</div>
+					</section>
 				</div>
 			</div>
 		)
