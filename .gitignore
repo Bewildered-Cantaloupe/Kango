@@ -8,6 +8,7 @@ dest
 public/css/styles.css.map
 public/js/components/.DS_Store
 public/css
+iisnode.yml
 
 # Authentication
 settings.json
