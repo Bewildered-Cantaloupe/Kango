@@ -8,7 +8,8 @@ var NotFoundRoute = Router.NotFoundRoute;
 
 var TwitterLogin = require('./TwitterLogin.jsx');
 var Login = require('./Login.jsx');
-var SignUp = require('./AddShelter.jsx')
+var SignUp = require('./AddShelter.jsx');
+var Donation = require('./donation-modal.jsx');
 
 
 var NavBarDefault = React.createClass({
@@ -46,6 +47,11 @@ var NavBarDefault = React.createClass({
 				<div className="modal fade" id="signUp" tabindex="-1" 	role="dialog">
 				  <div className="modal-dialog modal-lg">
 				  	<SignUp />
+				  </div>
+				</div>
+				<div className="modal fade" id="donation-modal" tabindex="-1" 	role="dialog">
+				  <div className="modal-dialog modal-lg">
+				  	<Donation />
 				  </div>
 				</div>
 			</div>
