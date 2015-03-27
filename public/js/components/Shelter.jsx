@@ -35,6 +35,7 @@ var Shelter = React.createClass({
     AsyncActions.donation.triggerAsync(this.current);
   },
 	render: function() {
+    console.log(this.props.shelters);
 		/* Gets the shelterName and filters the contents */
 		var url = window.location.href.split('/');
     console.log(url);
