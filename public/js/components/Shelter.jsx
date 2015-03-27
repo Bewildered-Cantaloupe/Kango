@@ -37,6 +37,7 @@ var Shelter = React.createClass({
 	render: function() {
 		/* Gets the shelterName and filters the contents */
 		var url = window.location.href.split('/');
+    console.log(url);
 		var shelterPath = url[url.length-1];
     var shelter = this.findMe(this.props.shelters, shelterPath);
     var paragraph = shelter.bio.split('\n');

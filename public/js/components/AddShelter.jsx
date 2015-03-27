@@ -84,7 +84,7 @@ var AddShelter = React.createClass({
             <div className="form-group">
               <label className="col-sm-2 control-label">Brief description of the services</label>
               <div className="col-sm-10">
-                <textarea type="text" className="form-control" rows="5"></textarea>
+                <textarea type="text" className="form-control" rows="5" name="bio"></textarea>
               </div>
             </div>
 
