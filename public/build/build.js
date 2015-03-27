@@ -33233,7 +33233,7 @@ var Signup = require('./components/Signup.jsx');
 var AddShelter = require('./components/AddShelter.jsx');
 var TwitterLogin = require('./components/TwitterLogin.jsx');
 var Shelter = require('./components/Shelter.jsx');
-
+ 
 var Router = require('react-router');
 var Route = Router.Route;
 var Link = Router.Link;
@@ -33262,11 +33262,7 @@ var routes = (
   React.createElement(Route, {name: "app", handler: App}, 
     React.createElement(Route, {name: "main", path: "/", handler: Main}), 
     React.createElement(Route, {name: "fund-shelters", handler: Shelters}), 
-<<<<<<< HEAD
-    React.createElement(Route, {name: "signup", handler: Signup}), 
-=======
     React.createElement(Route, {name: "signup", handler: AddShelter}), 
->>>>>>> 1b9fc8db25c3f040e68d203d3d1837c581596e20
     React.createElement(Route, {name: "twitter", handler: TwitterLogin}), 
     React.createElement(Route, {name: "shelter", path: "/shelter/:sheltername", handler: Shelter}), 
     React.createElement(NotFoundRoute, {handler: NotFound})
@@ -33279,7 +33275,7 @@ Router.run(routes,function (Handler) {
 
 
 
-},{"./components/AddShelter.jsx":215,"./components/Login.jsx":219,"./components/Main.jsx":220,"./components/NavBarDefault.jsx":221,"./components/NotFound.jsx":222,"./components/Shelter.jsx":224,"./components/Shelters.jsx":226,"./components/ShowList.jsx":228,"./components/Signup.jsx":229,"./components/TwitterLogin.jsx":230,"./stores/ShelterStore.jsx":231,"react":190,"react-router":31}],213:[function(require,module,exports){
+},{"./components/AddShelter.jsx":215,"./components/Login.jsx":219,"./components/Main.jsx":220,"./components/NavBarDefault.jsx":221,"./components/NotFound.jsx":222,"./components/Shelter.jsx":224,"./components/Shelters.jsx":226,"./components/ShowList.jsx":228,"./components/Signup.jsx":229,"./components/TwitterLogin.jsx":230,"./stores/ShelterStore.jsx":232,"react":190,"react-router":31}],213:[function(require,module,exports){
 var Reflux = require('reflux');
 var $ = require('jquery');
 
@@ -33331,51 +33327,77 @@ var AddShelter = React.createClass({displayName: "AddShelter",
   },
   render: function() {
      return (
-      React.createElement("div", {className: "modal-popup modal-content"}, 
-        React.createElement("h2", {className: "modal-popup-header"}, "Register your shelter to be featured on our site"), 
-        React.createElement("form", {action: "/shelter", method: "post"}, 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "What is your shelter's name?  "), 
-            React.createElement("input", {type: "text", class: "form-control", name: "sheltername"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Please provide the url of an image you'd like associated with your profile. "), 
-            React.createElement("input", {type: "text", class: "form-control", name: "imageurl_url"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "What is your address? (Line one) "), 
-            React.createElement("input", {type: "text", class: "form-control", name: "address_1"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "What is your address? (Line two) "), 
-            React.createElement("input", {type: "text", class: "form-control", name: "address_2"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "State?"), 
-            React.createElement("input", {type: "text", class: "form-control", name: "state"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Zip code?"), 
-            React.createElement("input", {type: "int", class: "form-control", name: "zip"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Telephone"), 
-            React.createElement("input", {type: "int", class: "form-control", name: "phone"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Best contact email?"), 
-            React.createElement("input", {type: "text", class: "form-control", name: "email"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, "Please provide a brief description of the services you provide and the nature of your campaign."), 
-            React.createElement("input", {type: "text", class: "form-control", name: "bio"})
-          ), 
-          React.createElement("div", {class: "form-group"}, 
-            React.createElement("label", null, " How much are you trying to raise? "), 
-            React.createElement("input", {type: "int", class: "form-control", name: "goal"})
-          ), 
+      React.createElement("div", {className: "modal-content"}, 
+        React.createElement("div", {className: "modal-header"}, 
+          React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close"}, React.createElement("span", {"aria-hidden": "true"}, "×")), 
+          React.createElement("h3", {className: "modal-title"}, "Shelter Registration")
+        ), 
+        React.createElement("div", {className: "modal-body"}, 
+          React.createElement("form", {className: "form-horizontal", action: "/shelter", method: "post"}, 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Shelter's name?"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "name", placeholder: "Shelter name"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Shelter's image URL "), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "imageUrl", placeholder: "http://"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "address"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "address1", placeholder: "Line 1"}), 
+                React.createElement("input", {type: "text", className: "form-control", name: "address2", placeholder: "Line 2"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "City"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "city", placeholder: "City"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "State"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "state", placeholder: "State"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Zip code"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "int", className: "form-control", name: "zip", placeholder: "Zip Code"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Telephone"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "int", className: "form-control", name: "telephone", placeholder: "Telephone"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Email"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "email", placeholder: "Email"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Fundraising goal "), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "int", className: "form-control", name: "goal", placeholder: "Goal"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Brief description of the services"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("textarea", {className: "form-control", rows: "5"}, "Your description here")
+              )
+            ), 
 
-          React.createElement("button", {type: "submit", class: "btn btn-warning btn-lg"}, "Signup")
+            React.createElement("button", {type: "submit", className: "btn btn-warning btn-lg"}, "Signup")
+          )
         )
       )
     );
@@ -33403,7 +33425,7 @@ var Link = Router.Link;
 var Login = React.createClass({displayName: "Login",
   render: function() {
     return (
-      React.createElement("div", {className: "modal-content"}, 
+      React.createElement("div", {className: "modal-content sub-modal-content"}, 
         React.createElement("div", {className: "modal-header"}, 
           React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close"}, React.createElement("span", {"aria-hidden": "true"}, "×")), 
           React.createElement("h3", {className: "modal-title"}, "Sign In to Kango")
@@ -33417,10 +33439,18 @@ var Login = React.createClass({displayName: "Login",
               React.createElement("input", {type: "password", className: "form-control login-input", id: "inputPassword3", placeholder: "Password"})
             ), 
             React.createElement("div", {className: "form-group"}, 
-              React.createElement("button", {type: "submit", className: "btn btn-default"}, "Sign in")
+              React.createElement("button", {type: "submit", className: "btn"}, "Sign in")
             )
           ), 
-          React.createElement("p", null, "Need an account? ", React.createElement(Link, {to: "signup"}, "Sign Up"))
+          React.createElement("p", null, "or login with:"), 
+          React.createElement("form", {action: "/auth/twitter", method: "get"}, 
+            React.createElement("button", {type: "submit", className: "tfg-login fa fa-twitter-square fa-3x"}), 
+            React.createElement("button", {type: "submit", className: "tfg-login fa fa-facebook-square fa-3x"}), 
+            React.createElement("button", {type: "submit", className: "tfg-login fa fa-google-plus-square fa-3x"})
+          ), 
+          React.createElement("p", null, "Need an account? ", React.createElement(Link, {to: "main", "data-toggle": "modal", "data-target": "#signUp"}, "Sign Up"))
+        ), 
+        React.createElement("div", {className: "modal-footer"}
         )
       )
     )
@@ -33431,8 +33461,6 @@ module.exports = Login;
 
 },{"react":190,"react-router":31}],220:[function(require,module,exports){
 var React = require('react');
-var ShelterStore = require('../stores/ShelterStore.jsx');
-var ShowList = require('./ShowList.jsx');
 var NavBarDefault = require('./NavBarDefault.jsx');
 
 var Router = require('react-router');
@@ -33463,11 +33491,6 @@ var Main = React.createClass({displayName: "Main",
 					React.createElement("div", {className: "container"}, 
 						React.createElement("h2", null, "100% of your donation fund Bay Area animal shelters.")
 					)
-				), 
-				React.createElement("section", {className: "three-shelters"}, 
-					React.createElement("div", {className: "container sub-container"}, 
-						React.createElement(ShowList, React.__spread({},  this.props))
-					)
 				)
 			)
 		)
@@ -33476,7 +33499,7 @@ var Main = React.createClass({displayName: "Main",
 
 module.exports = Main;
 
-},{"../stores/ShelterStore.jsx":231,"./NavBarDefault.jsx":221,"./ShowList.jsx":228,"react":190,"react-router":31}],221:[function(require,module,exports){
+},{"./NavBarDefault.jsx":221,"react":190,"react-router":31}],221:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -33487,6 +33510,8 @@ var NotFoundRoute = Router.NotFoundRoute;
 
 var TwitterLogin = require('./TwitterLogin.jsx');
 var Login = require('./Login.jsx');
+var SignUp = require('./AddShelter.jsx');
+var Donation = require('./donation-modal.jsx');
 
 
 var NavBarDefault = React.createClass({displayName: "NavBarDefault",
@@ -33509,7 +33534,7 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 								React.createElement("li", null, React.createElement(Link, {to: "main"}, "About")), 
 								React.createElement("li", null, 
 								React.createElement(Link, {to: "main", "data-toggle": "modal", "data-target": "#signIn"}, 
-										"Sign In"
+										"Shelter Sign In"
 								)
 								)
 							)
@@ -33520,6 +33545,16 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 				  React.createElement("div", {className: "modal-dialog modal-lg"}, 
 				  	React.createElement(Login, null)
 				  )
+				), 
+				React.createElement("div", {className: "modal fade", id: "signUp", tabindex: "-1", 	role: "dialog"}, 
+				  React.createElement("div", {className: "modal-dialog modal-lg"}, 
+				  	React.createElement(SignUp, null)
+				  )
+				), 
+				React.createElement("div", {className: "modal fade", id: "donation-modal", tabindex: "-1", 	role: "dialog"}, 
+				  React.createElement("div", {className: "modal-dialog modal-lg"}, 
+				  	React.createElement(Donation, null)
+				  )
 				)
 			)
 		)
@@ -33528,11 +33563,7 @@ var NavBarDefault = React.createClass({displayName: "NavBarDefault",
 
 module.exports = NavBarDefault;
 
-<<<<<<< HEAD
-},{"./Login.jsx":218,"./TwitterLogin.jsx":229,"react":189,"react-router":30}],221:[function(require,module,exports){
-=======
-},{"./TwitterLogin.jsx":230,"react":190,"react-router":31}],222:[function(require,module,exports){
->>>>>>> 1b9fc8db25c3f040e68d203d3d1837c581596e20
+},{"./AddShelter.jsx":215,"./Login.jsx":219,"./TwitterLogin.jsx":230,"./donation-modal.jsx":231,"react":190,"react-router":31}],222:[function(require,module,exports){
 var React = require('react');
 
 var NotFound = React.createClass({displayName: "NotFound",
@@ -33629,10 +33660,8 @@ var Shelter = React.createClass({displayName: "Shelter",
                 React.createElement(Progress, {completed: shelter.raised/shelter.goal * 100})
               ), 
 							React.createElement("form", {id: "donation-form", action: "/donate", method: "post", onSuccess: this.updateState, onSubmit: this.submit}, 
-							  React.createElement("input", {id: "donation", type: "text", name: "donation"}), 
-							  React.createElement("input", {type: "text", name: "sheltername", className: "hidden", readOnly: "true", value: this.current.sheltername}), 
-							  React.createElement("button", {id: "donation-submit", type: "submit"}, "DONATE")
-							)
+                React.createElement("button", {id: "donation-submit", "data-toggle": "modal", "data-target": "#donation-modal"}, "DONATE")
+              )
 
 						)
 					), 
@@ -33657,9 +33686,10 @@ var Shelter = React.createClass({displayName: "Shelter",
 module.exports = Shelter;
 
 
-},{"../actions/asyncActions.jsx":213,"../stores/ShelterStore.jsx":231,"../stores/SingleStore.jsx":232,"./NavBarDefault.jsx":221,"jquery":2,"react":190,"react-progressbar":3,"reflux":191,"underscore":211}],225:[function(require,module,exports){
+},{"../actions/asyncActions.jsx":213,"../stores/ShelterStore.jsx":232,"../stores/SingleStore.jsx":233,"./NavBarDefault.jsx":221,"jquery":2,"react":190,"react-progressbar":3,"reflux":191,"underscore":211}],225:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
+var Progress = require('react-progressbar');
 var Route = Router.Route;
 var Link = Router.Link;
 var $ = require('jquery');
@@ -33682,7 +33712,8 @@ var ShelterCard = React.createClass({displayName: "ShelterCard",
 						React.createElement("div", {className: "shelter-bio"}, 
 							React.createElement("h3", null, this.props.data.name)
 						), 
-						React.createElement("div", {className: this.props.data.sheltername + " shelter-progress-bar"}
+						React.createElement("div", null, 
+						React.createElement(Progress, {completed: this.props.data.raised/this.props.data.goal * 100})
 						), 
 						React.createElement("div", {className: "shelter-fund-wrapper"}, 
 							React.createElement("span", {className: "shelter-raised"}, 
@@ -33701,9 +33732,11 @@ var ShelterCard = React.createClass({displayName: "ShelterCard",
 
 module.exports = ShelterCard;
 
-},{"jquery":2,"react":190,"react-router":31}],226:[function(require,module,exports){
+},{"jquery":2,"react":190,"react-progressbar":3,"react-router":31}],226:[function(require,module,exports){
 var React = require('react');
 var NavBarDefault = require('./NavBarDefault.jsx');
+var ShelterStore = require('../stores/ShelterStore.jsx');
+var ShowList = require('./ShowList.jsx');
 
 var Shelters = React.createClass({displayName: "Shelters",
 	render: function() {
@@ -33713,7 +33746,12 @@ var Shelters = React.createClass({displayName: "Shelters",
 					React.createElement(NavBarDefault, null)
 				), 
 				React.createElement("div", {className: "container"}, 
-					React.createElement("h1", null, " This is the Shelters view ")
+					React.createElement("h1", null, " Local Shelters "), 
+					React.createElement("section", {className: "three-shelters"}, 
+						React.createElement("div", {className: "container sub-container"}, 
+							React.createElement(ShowList, React.__spread({},  this.props))
+						)
+					)
 				)
 			)
 		)
@@ -33722,7 +33760,7 @@ var Shelters = React.createClass({displayName: "Shelters",
 
 module.exports = Shelters;
 
-},{"./NavBarDefault.jsx":221,"react":190}],227:[function(require,module,exports){
+},{"../stores/ShelterStore.jsx":232,"./NavBarDefault.jsx":221,"./ShowList.jsx":228,"react":190}],227:[function(require,module,exports){
 var React = require('react');
 
 var ShowAll = React.createClass({displayName: "ShowAll",
@@ -33798,6 +33836,56 @@ var TwitterLogin = React.createClass({displayName: "TwitterLogin",
 module.exports = TwitterLogin;
 
 },{"react":190}],231:[function(require,module,exports){
+var React = require('react');
+var Router = require('react-router');
+var Route = Router.Route;
+var Link = Router.Link;
+
+var Donation = React.createClass({displayName: "Donation",
+  render: function() {
+    return (
+      React.createElement("div", {className: "modal-content"}, 
+        React.createElement("div", {className: "modal-header"}, 
+          React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close"}, React.createElement("span", {"aria-hidden": "true"}, "×")), 
+          React.createElement("h3", {className: "modal-title"}, "Payment Information")
+        ), 
+        React.createElement("div", {className: "modal-body"}, 
+          React.createElement("form", {className: "form-horizontal", action: "/donate", method: "post"}, 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Full Name"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "fullName", placeholder: "Your full name"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Credit Card"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "creditCard", placeholder: "Credit Card"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Exp. Date"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "expDate", placeholder: "City"})
+              )
+            ), 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {className: "col-sm-2 control-label"}, "Amount"), 
+              React.createElement("div", {className: "col-sm-10"}, 
+                React.createElement("input", {type: "text", className: "form-control", name: "amount", placeholder: "$"})
+              )
+            ), 
+            React.createElement("button", {type: "submit", className: "btn btn-warning btn-lg"}, "Signup")
+          )
+        )
+      )
+    )
+  }
+});
+
+module.exports = Donation;
+
+},{"react":190,"react-router":31}],232:[function(require,module,exports){
 var Reflux = require('reflux');
 var $ = require('jquery');
 var ShelterActions = require('../actions/shelterActions.jsx');
@@ -33936,7 +34024,7 @@ var ShelterStore = Reflux.createStore({
 
 module.exports = ShelterStore;
 
-},{"../actions/shelterActions.jsx":214,"jquery":2,"reflux":191}],232:[function(require,module,exports){
+},{"../actions/shelterActions.jsx":214,"jquery":2,"reflux":191}],233:[function(require,module,exports){
 var Reflux = require('reflux');
 var AsyncActions = require('../actions/asyncActions.jsx');
 
@@ -33956,4 +34044,4 @@ var SingleStore = Reflux.createStore({
 module.exports = SingleStore;
 
 
-},{"../actions/asyncActions.jsx":213,"reflux":191}]},{},[212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232]);
+},{"../actions/asyncActions.jsx":213,"reflux":191}]},{},[212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233]);
