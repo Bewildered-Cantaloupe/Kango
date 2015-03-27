@@ -76,10 +76,8 @@ var Shelter = React.createClass({
                 <Progress completed={shelter.raised/shelter.goal * 100} />
               </div>
 							<form id="donation-form" action="/donate" method="post" onSuccess={this.updateState} onSubmit={this.submit}>
-							  <input id="donation" type="text" name="donation" />
-							  <input type="text" name="sheltername" className="hidden" readOnly="true" value={this.current.sheltername} />
-							  <button id="donation-submit" type="submit">DONATE</button>
-							</form>
+                <button id="donation-submit" data-toggle="modal" data-target="#donation-modal">DONATE</button>
+              </form>
 
 						</div>
 					</div>
