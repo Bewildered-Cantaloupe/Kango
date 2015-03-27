@@ -2,6 +2,7 @@
 var React = require('react');
 var Main = require('./components/Main.jsx');
 var ShelterStore = require('./stores/ShelterStore.jsx');
+var ShelterActions = require('./actions/shelterActions.jsx');
 var ShowList = require('./components/ShowList.jsx');
 var Shelters = require('./components/Shelters.jsx');
 var NotFound = require('./components/NotFound.jsx');
@@ -22,8 +23,15 @@ var NotFoundRoute = Router.NotFoundRoute;
 var App = React.createClass({
   getInitialState: function() {
     return {
-      nearbyShelters: ShelterStore.getShelters()
-    }
+      nearbyShelters: []
+    };
+  },
+  componentWillMount: function(){
+    ShelterActions.load(function(data){
+      this.setState({
+        nearbyShelters: data
+      });
+    }.bind(this));
   },
   render: function() {
     return (

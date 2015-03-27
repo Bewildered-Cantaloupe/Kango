@@ -15,8 +15,7 @@ var Donation = require('./donation-modal.jsx');
 var NavBarDefault = React.createClass({
 
 
-	render: function() {
-
+  render: function() {
 		return (
 			<div>
 				<header>
@@ -57,6 +56,7 @@ var NavBarDefault = React.createClass({
 			</div>
 		)
 	}
+
 });
 
 module.exports = NavBarDefault;
